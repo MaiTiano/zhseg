@@ -1,5 +1,6 @@
 # coding: utf-8
 from __future__ import unicode_literals
+from fractions import Fraction as frac
 import json
 import collections
 from math import log
@@ -9,15 +10,16 @@ SCALE = 5
 d=collections.defaultdict(lambda:EPS)
 d.update(json.load(open('dict.json')))
 #d.update(json.load(open('sogou.json')))
+total = sum(map(lambda x: d[x], d))
  
 def fenci(s):
     l=len(s)
-    p=[1 for i in range(l + 1)]
+    p=[0 for i in range(l + 1)]
     t=[1 for i in range(l)]
     for i in range(l-1, -1, -1):
         for k in range(1, l-i+1):
-            if(log(d[s[i:i+k]] * SCALE) + p[i+k] > p[i]):
-                p[i]=log(d[s[i:i+k]] * SCALE) + p[i+k]
+            if frac(d[s[i:i+k]] * SCALE, total) + p[i+k] > p[i]:
+                p[i]=frac(d[s[i:i+k]] * SCALE, total) + p[i+k]
                 t[i]=k
     print 'sum:',p[0]
     i=0
