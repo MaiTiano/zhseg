@@ -3,9 +3,8 @@ from __future__ import unicode_literals
 from fractions import Fraction as frac
 import json
 
-d = {}
-d.update(json.load(open('dict.json')))
-#d.update(json.load(open('sogou.json')))
+d = json.load(open('dict.json'))
+#d = json.load(open('sogou.json'))
 total = long(sum(map(lambda x: d[x], d)))
 
 

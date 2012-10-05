@@ -4,12 +4,11 @@ from __future__ import division
 import json
 import math
 
-d = {}
-d.update(json.load(open('dict.json')))
-#d.update(json.load(open('sogou.json')))
+d = json.load(open('dict.json'))
+#d = json.load(open('sogou.json'))
 total = long(sum(map(lambda x: d[x], d)))
-
 log = lambda x: float('-inf') if not x else math.log(x)
+
 
 def prob(w):
     if w in d:
@@ -23,7 +22,7 @@ def fenci(s):
     t = [None for i in range(l)]
 
     for i in range(l - 1, -1, -1):
-        p[i], t[i] = max([(log(prob(s[i:i + k]) / total) + p[i + k], k) 
+        p[i], t[i] = max([(log(prob(s[i:i + k]) / total) + p[i + k], k)
                           for k in range(1, l - i + 1)])
 
     print 'sum:', p[0]
