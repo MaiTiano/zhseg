@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 from fractions import Fraction as frac
 import json
-import collections
 
 d = {}
 d.update(json.load(open('dict.json')))
