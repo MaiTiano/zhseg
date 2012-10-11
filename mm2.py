@@ -6,7 +6,7 @@ import math
 
 d = json.load(open('dict.json'))
 #d = json.load(open('sogou.json'))
-total = long(sum(map(lambda x: d[x], d)))
+total = long(sum(d.values()))
 log = lambda x: float('-inf') if not x else math.log(x)
 
 
@@ -15,7 +15,8 @@ def prob(w):
         return d[w]
     else:
         return 1 if len(w) == 1 else 0
- 
+
+
 def fenci(s):
     l = len(s)
     p = [0 for i in range(l + 1)]
@@ -30,7 +31,7 @@ def fenci(s):
     while i < l:
         yield s[i:i + t[i]]
         i = i + t[i]
- 
+
 if __name__ == '__main__':
     s = '疾步路过书店隔着玻璃看见埋头阅读的人们很想一砖头砸破他们的平静我就是羡慕嫉妒恨虽然如果我很悠闲但也懒得演绎书店读书一幕'
     print '|'.join(list(fenci(s))).encode('utf-8')
