@@ -6,7 +6,7 @@ import math
 
 d = json.load(open('dict.json'))
 #d = json.load(open('sogou.json'))
-total = long(sum(d.values()))
+total = sum(d.itervalues())
 log = lambda x: float('-inf') if not x else math.log(x)
 
 
@@ -23,8 +23,8 @@ def fenci(s):
     t = [None for i in range(l)]
 
     for i in range(l - 1, -1, -1):
-        p[i], t[i] = max([(log(prob(s[i:i + k]) / total) + p[i + k], k)
-                          for k in range(1, l - i + 1)])
+        p[i], t[i] = max((log(prob(s[i:i + k]) / total) + p[i + k], k)
+                          for k in range(1, l - i + 1))
 
     print 'sum:', p[0]
     i = 0

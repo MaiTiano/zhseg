@@ -5,7 +5,7 @@ import json
 
 d = json.load(open('dict.json'))
 #d = json.load(open('sogou.json'))
-total = long(sum(d.values()))
+total = sum(d.itervalues())
 
 
 def simplify(f):
@@ -25,8 +25,8 @@ def fenci(s):
     t = [None for i in range(l)]
 
     for i in range(l - 1, -1, -1):
-        p[i], t[i] = max([(frac(prob(s[i:i + k]), total) * p[i + k], k)
-                          for k in range(1, l - i + 1)])
+        p[i], t[i] = max((frac(prob(s[i:i + k]), total) * p[i + k], k)
+                          for k in range(1, l - i + 1))
         p[i] = simplify(p[i])
 
     print 'sum:', p[0]
