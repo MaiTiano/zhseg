@@ -33,5 +33,5 @@ def fenci(s):
         i = i + t[i]
 
 if __name__ == '__main__':
-    s = '疾步路过书店隔着玻璃看见埋头阅读的人们很想一砖头砸破他们的平静我就是羡慕嫉妒恨虽然如果我很悠闲但也懒得演绎书店读书一幕'
-    print '|'.join(list(fenci(s))).encode('utf-8')
+    s = '每个人心里都有一个坑不小心掉进去半天才能爬出来'
+    print '|'.join(fenci(s)).encode('utf-8')
